@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" data-framework="jquery" data-version="3.6.3" data-features="">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="A TodoMVC workload app for Speedometer!" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>TodoMVC: jQuery</title>
+        <link rel="stylesheet" href="node_modules/todomvc-common/base.css" />
+        <link rel="stylesheet" href="node_modules/todomvc-app-css/index.css" />
+        <link rel="stylesheet" href="src/app.css" />
+    </head>
+    <body>
+        <section id="todoapp" class="todoapp">
+            <header id="header" class="header">
+                <h1>todos</h1>
+                <input id="new-todo" class="new-todo" placeholder="What needs to be done?" autofocus />
+            </header>
+            <section id="main" class="main">
+                <input id="toggle-all" class="toggle-all" type="checkbox" />
+                <label class="toggle-all-label" for="toggle-all">Mark all as complete</label>
+                <ul id="todo-list" class="todo-list"></ul>
+            </section>
+            <footer id="footer" class="footer"></footer>
+        </section>
+        <footer class="info">
+            <p>Click on input field to write your todo.</p>
+            <p>At least two characters are needed to be a valid entry.</p>
+            <p>Press 'enter' to add the todo.</p>
+            <p>Double-click to edit a todo</p>
+        </footer>
+        <script id="todo-template" type="text/x-handlebars-template">
+                {{#this}}
+                <li {{#if completed}}class="completed"{{/if}} data-id="{{id}}">
+                    <div class="view">
+                        <input class="toggle" type="checkbox" {{#if completed}}checked{{/if}}>
+                        <label>{{title}}</label>
+                        <button class="destroy"></button>
+                    </div>
+                    <input class="edit" value="{{title}}">
+                </li>
+            {{/this}}
+        </script>
+        <script id="footer-template" type="text/x-handlebars-template">
+            <span id="todo-count" class="todo-count"><strong>{{activeTodoCount}}</strong> {{activeTodoWord}} left</span>
+            <ul id="filters" class="filters">
+                <li>
+                    <a {{#eq filter 'all'}}class="selected"{{/eq}} href="#/all">All</a>
+                </li>
+                <li>
+                    <a {{#eq filter 'active'}}class="selected"{{/eq}}href="#/active">Active</a>
+                </li>
+                <li>
+                    <a {{#eq filter 'completed'}}class="selected"{{/eq}}href="#/completed">Completed</a>
+                </li>
+            </ul>
+            {{#if completedTodos}}<button class="clear-completed">Clear completed</button>{{/if}}
+        </script>
+        <script src="node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
+        <script src="src/utils.js"></script>
+        <script src="src/store.js"></script>
+        <script src="src/model.js"></script>
+        <script src="src/template.js"></script>
+        <script src="src/view.js"></script>
+        <script src="src/controller.js"></script>
+        <script src="src/app.js"></script>
+    </body>
+</html>
